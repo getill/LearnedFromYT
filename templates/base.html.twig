@@ -16,6 +16,10 @@
         {% endblock %}
     </head>
     <body>
+{#    // Ici on inclut la partie header du site (partie codée dans un autre fichier qui ne contient que ça)#}
+        {%  block header %}
+            {% include "partials/_header.html.twig" %}
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>
