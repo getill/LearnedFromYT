@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 // Les asserts vont faire en sorte de normer ce que l'on peut mettre dans la base de donnée
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
+#[UniqueEntity('name')] // Fait en sorte qu'il n'y ai pas deux fois le même ingrédient
 class Ingredient
 {
     #[ORM\Id]
