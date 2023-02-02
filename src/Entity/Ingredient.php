@@ -18,7 +18,7 @@ class Ingredient
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-//   Assert Length va faire en sorte que la base de donnée ne puisse pas accepter autre chose que des valeurs entre 2 et 50
+    //   Assert Length va faire en sorte que la base de donnée ne puisse pas accepter autre chose que des valeurs entre 2 et 50
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
     private ?string $name = null;
@@ -80,5 +80,10 @@ class Ingredient
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

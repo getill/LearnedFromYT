@@ -47,13 +47,12 @@ class IngredientController extends AbstractController
     public function new(
         Request $request,
         EntityManagerInterface $manager
-    ): Response
-    {
+    ): Response {
         $ingredient = new Ingredient();
         $form = $this->createForm(IngredientType::class, $ingredient);
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $ingredient = $form->getData();
             // Fait en sorte que ça s'ajoute à la base de donnée
             $manager->persist($ingredient); // Comme un commit...
@@ -72,17 +71,24 @@ class IngredientController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit ingredient
+     *
+     * @param Ingredient $ingredient
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/ingredient/edition/{id}', 'ingredient.edit', methods: ['GET', 'POST'])]
     public function edit(
         Ingredient $ingredient,
         Request $request,
         EntityManagerInterface $manager
-    ): Response
-    {
+    ): Response {
         // L'id de l'ingrédient est icnlus car il est à la place de l'id dans edit()
         $form = $this->createForm(IngredientType::class, $ingredient);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $ingredient = $form->getData();
             // Fait en sorte que ça s'ajoute à la base de donnée
             $manager->persist($ingredient); // Comme un commit...
@@ -101,6 +107,13 @@ class IngredientController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete ingredient
+     *
+     * @param EntityManagerInterface $manager
+     * @param Ingredient $ingredient
+     * @return Response
+     */
     #[Route('/ingredient/suppression/{id}', 'ingredient.delete', methods: ['GET'])]
     public function delete(
         EntityManagerInterface $manager,
