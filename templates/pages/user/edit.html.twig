@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les p'tites recettes - Modification de l'utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Modification des informations utilisateur</h1>
+
+        {% for message in app.flashes('warning')%}
+            <div class="alert alert-warning mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ form(form) }}
+    </div>
+{% endblock %}
